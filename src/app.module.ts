@@ -1,8 +1,11 @@
 import { Module } from '@nestjs/common';
 
-
 @Module({
-  imports: [],
+  imports: [
+    ConfigModule.forRoot({
+      isGloble : true,
+    })
+  ],
  
 })
 export class AppModule {}
