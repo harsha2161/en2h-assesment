@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Booking } from '../../booking/entities/booking.entity';
 
 @Entity('services')
 export class Service {
@@ -19,4 +20,7 @@ export class Service {
 
   @Column({ default: true })
   isActive: boolean;
+
+  @OneToMany(() => Booking, (booking) => booking.service)
+  bookings: Booking[];
 }
