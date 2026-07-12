@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { DatabaseModule } from './database/database.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ServiceModule } from './api/service/service.module';
 
 @Module({
   imports: [
@@ -8,7 +9,20 @@ import { DatabaseModule } from './database/database.module';
       isGlobal: true,
     }),
 
-    DatabaseModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.DB_HOST,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.booking_db,
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
+
+    ServiceModule,
+
+
+
   ],
 })
 export class AppModule {}
