@@ -19,7 +19,6 @@ export class UserService {
     return this.userRepository.findOne({ where: { email } });
   }
 
-  // standard CRUD methods
   async findAll(): Promise<User[]> {
     return this.userRepository.find();
   }

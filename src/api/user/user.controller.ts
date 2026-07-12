@@ -29,7 +29,6 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateData: any) {
-    // Ideally we would use an UpdateUserDto here
     return this.userService.update(id, updateData);
   }
 
