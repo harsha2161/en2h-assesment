@@ -1,28 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServiceModule } from './api/service/service.module';
+import { DatabaseModule } from './db/database.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DB_HOST,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.booking_db,
-      autoLoadEntities: true,
-      synchronize: true,
-    }),
-
+    DatabaseModule,
     ServiceModule,
-
-
-
   ],
 })
 export class AppModule {}
